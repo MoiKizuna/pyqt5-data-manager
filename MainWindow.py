@@ -8,6 +8,7 @@ from qframelesswindow import FramelessWindow, StandardTitleBar
 from PyQt5.QtGui import QIcon, QPainter, QImage, QBrush, QColor, QFont, QDesktopServices
 
 from EmployeesInterface import EmployeesInterface
+from DepartementInterface import DepartmentInterface
 
 
 class Widget(QFrame):
@@ -40,7 +41,7 @@ class MainWindow(FramelessWindow):
         # create sub interface
         self.searchInterface = Widget('Search Interface', self)
         self.employeesInterface = EmployeesInterface(self)
-        self.departmentInterface = Widget('Department Interface', self)
+        self.departmentInterface = DepartmentInterface(self)
         self.settingInterface = Widget('Setting Interface', self)
 
         # initialize layout
@@ -68,14 +69,6 @@ class MainWindow(FramelessWindow):
 
         self.navigationInterface.addSeparator()
 
-        # add custom widget to bottom
-        self.navigationInterface.addWidget(
-            routeKey='avatar',
-            widget=NavigationAvatarWidget('zhiyiYo', 'resource/shoko.png'),
-            onClick=self.showMessageBox,
-            position=NavigationItemPosition.BOTTOM,
-        )
-
         self.addSubInterface(self.settingInterface, FIF.SETTING, 'Settings', NavigationItemPosition.BOTTOM)
 
         # !IMPORTANT: don't forget to set the default route key if you enable the return button
@@ -91,7 +84,7 @@ class MainWindow(FramelessWindow):
         # self.navigationInterface.setCollapsible(False)
 
     def initWindow(self):
-        self.resize(1200, 800)
+        self.resize(1030, 700)
         self.setWindowIcon(QIcon('resource/logo.png'))
         self.setWindowTitle('HR Master')
         self.titleBar.setAttribute(Qt.WA_StyledBackground)
@@ -133,18 +126,6 @@ class MainWindow(FramelessWindow):
 
         # !IMPORTANT: This line of code needs to be uncommented if the return button is enabled
         # qrouter.push(self.stackWidget, widget.objectName())
-
-    def showMessageBox(self):
-        w = MessageBox(
-            '支持作者🥰',
-            '个人开发不易，如果这个项目帮助到了您，可以考虑请作者喝一瓶快乐水🥤。您的支持就是作者开发和维护项目的动力🚀',
-            self
-        )
-        w.yesButton.setText('来啦老弟')
-        w.cancelButton.setText('下次一定')
-
-        if w.exec():
-            QDesktopServices.openUrl(QUrl("https://afdian.net/a/zhiyiYo"))
 
 
 if __name__ == '__main__':

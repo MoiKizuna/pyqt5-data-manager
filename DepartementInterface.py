@@ -1,13 +1,13 @@
 from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtSql import QSqlTableModel
-from ui.EmployeesManageUi import Ui_EmployeesManage
+from ui.DepartmentManageUi import Ui_DepartmentManage
 from database import DatabaseManager
 from qfluentwidgets import Flyout, InfoBarIcon, FlyoutAnimationType, MessageBox
 
 
-class EmployeesInterface(QWidget, Ui_EmployeesManage):
+class DepartmentInterface(QWidget, Ui_DepartmentManage):
     def __init__(self, parent=None):
-        super(EmployeesInterface, self).__init__(parent)
+        super(DepartmentInterface, self).__init__(parent)
         self.setupUi(self)
         self.db_manager = DatabaseManager('data/hrmasterdb.db')  # 初始化你的数据库管理器
         self.initializeUI()
@@ -20,7 +20,7 @@ class EmployeesInterface(QWidget, Ui_EmployeesManage):
     def initializeUI(self):
         if self.db_manager.open_connection():
             self.model = QSqlTableModel(self)
-            self.model.setTable('employee')
+            self.model.setTable('department')
             self.model.select()
             self.TableView.setModel(self.model)
         else:
@@ -148,6 +148,6 @@ if __name__ == "__main__":
     import sys
 
     app = QApplication(sys.argv)
-    window = EmployeesInterface()
+    window = DepartmentInterface()
     window.show()
     sys.exit(app.exec_())

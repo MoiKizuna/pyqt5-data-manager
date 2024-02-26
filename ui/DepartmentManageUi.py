@@ -11,11 +11,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_EmployeesManage(object):
-    def setupUi(self, EmployeesManage):
-        EmployeesManage.setObjectName("EmployeesManage")
-        EmployeesManage.resize(966, 668)
-        self.layoutWidget = QtWidgets.QWidget(EmployeesManage)
+class Ui_DepartmentManage(object):
+    def setupUi(self, DepartmentManage):
+        DepartmentManage.setObjectName("DepartmentManage")
+        DepartmentManage.resize(966, 668)
+        self.layoutWidget = QtWidgets.QWidget(DepartmentManage)
         self.layoutWidget.setGeometry(QtCore.QRect(20, 10, 931, 651))
         self.layoutWidget.setObjectName("layoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.layoutWidget)
@@ -75,25 +75,27 @@ class Ui_EmployeesManage(object):
         self.verticalLayout.addItem(spacerItem15)
         self.horizontalLayout.addLayout(self.verticalLayout)
 
-        self.retranslateUi(EmployeesManage)
-        QtCore.QMetaObject.connectSlotsByName(EmployeesManage)
+        self.retranslateUi(DepartmentManage)
+        QtCore.QMetaObject.connectSlotsByName(DepartmentManage)
 
-    def retranslateUi(self, EmployeesManage):
+    def retranslateUi(self, DepartmentManage):
         _translate = QtCore.QCoreApplication.translate
-        EmployeesManage.setWindowTitle(_translate("EmployeesManage", "EmployeesManage"))
-        self.PushButton.setText(_translate("EmployeesManage", "Quit"))
-        self.PushButton_2.setText(_translate("EmployeesManage", "Submit"))
-        self.PushButton_3.setText(_translate("EmployeesManage", "Revert"))
-        self.PushButton_4.setText(_translate("EmployeesManage", "Add"))
-        self.PushButton_5.setText(_translate("EmployeesManage", "Delete"))
-from qfluentwidgets import PushButton, TableView
+        DepartmentManage.setWindowTitle(_translate("DepartmentManage", "DepartmentManage"))
+        self.PushButton.setText(_translate("DepartmentManage", "Quit"))
+        self.PushButton_2.setText(_translate("DepartmentManage", "Submit"))
+        self.PushButton_3.setText(_translate("DepartmentManage", "Revert"))
+        self.PushButton_4.setText(_translate("DepartmentManage", "Add"))
+        self.PushButton_5.setText(_translate("DepartmentManage", "Delete"))
 
+
+from qfluentwidgets import PushButton, TableView
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
-    EmployeesManage = QtWidgets.QWidget()
-    ui = Ui_EmployeesManage()
-    ui.setupUi(EmployeesManage)
-    EmployeesManage.show()
+    DepartmentManage = QtWidgets.QWidget()
+    ui = Ui_DepartmentManage()
+    ui.setupUi(DepartmentManage)
+    DepartmentManage.show()
     sys.exit(app.exec_())
