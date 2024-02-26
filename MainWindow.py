@@ -1,13 +1,11 @@
-# coding:utf-8
 import sys
 from PyQt5.QtCore import Qt, QRect, QUrl
-from PyQt5.QtGui import QIcon, QPainter, QImage, QBrush, QColor, QFont, QDesktopServices
 from PyQt5.QtWidgets import QApplication, QFrame, QStackedWidget, QHBoxLayout, QLabel
-
 from qfluentwidgets import (NavigationInterface, NavigationItemPosition, NavigationWidget, MessageBox,
                             isDarkTheme, setTheme, Theme, setThemeColor, qrouter, FluentWindow, NavigationAvatarWidget)
 from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow, StandardTitleBar
+from PyQt5.QtGui import QIcon, QPainter, QImage, QBrush, QColor, QFont, QDesktopServices
 
 
 class Widget(QFrame):
@@ -21,8 +19,7 @@ class Widget(QFrame):
         self.setObjectName(text.replace(' ', '-'))
 
 
-
-class Window(FramelessWindow):
+class MainWindow(FramelessWindow):
 
     def __init__(self):
         super().__init__()
@@ -100,7 +97,7 @@ class Window(FramelessWindow):
 
         self.addSubInterface(self.settingInterface, FIF.SETTING, 'Settings', NavigationItemPosition.BOTTOM)
 
-        #!IMPORTANT: don't forget to set the default route key if you enable the return button
+        # !IMPORTANT: don't forget to set the default route key if you enable the return button
         # qrouter.setDefaultRouteKey(self.stackWidget, self.musicInterface.objectName())
 
         # set the maximum width
@@ -120,7 +117,7 @@ class Window(FramelessWindow):
 
         desktop = QApplication.desktop().availableGeometry()
         w, h = desktop.width(), desktop.height()
-        self.move(w//2 - self.width()//2, h//2 - self.height()//2)
+        self.move(w // 2 - self.width() // 2, h // 2 - self.height() // 2)
 
         # NOTE: set the minimum window width that allows the navigation panel to be expanded
         # self.navigationInterface.setMinimumExpandWidth(900)
@@ -153,7 +150,7 @@ class Window(FramelessWindow):
         widget = self.stackWidget.widget(index)
         self.navigationInterface.setCurrentItem(widget.objectName())
 
-        #!IMPORTANT: This line of code needs to be uncommented if the return button is enabled
+        # !IMPORTANT: This line of code needs to be uncommented if the return button is enabled
         # qrouter.push(self.stackWidget, widget.objectName())
 
     def showMessageBox(self):
@@ -176,6 +173,6 @@ if __name__ == '__main__':
     QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
 
     app = QApplication(sys.argv)
-    w = Window()
+    w = MainWindow()
     w.show()
     app.exec_()
