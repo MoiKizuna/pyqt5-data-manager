@@ -7,6 +7,8 @@ from qfluentwidgets import FluentIcon as FIF
 from qframelesswindow import FramelessWindow, StandardTitleBar
 from PyQt5.QtGui import QIcon, QPainter, QImage, QBrush, QColor, QFont, QDesktopServices
 
+from EmployeesInterface import EmployeesInterface
+
 
 class Widget(QFrame):
 
@@ -37,14 +39,9 @@ class MainWindow(FramelessWindow):
 
         # create sub interface
         self.searchInterface = Widget('Search Interface', self)
-        self.musicInterface = Widget('Music Interface', self)
-        self.videoInterface = Widget('Video Interface', self)
-        self.folderInterface = Widget('Folder Interface', self)
+        self.employeesInterface = EmployeesInterface(self)
+        self.departmentInterface = Widget('Department Interface', self)
         self.settingInterface = Widget('Setting Interface', self)
-        self.albumInterface = Widget('Album Interface', self)
-        self.albumInterface1 = Widget('Album Interface 1', self)
-        self.albumInterface2 = Widget('Album Interface 2', self)
-        self.albumInterface1_1 = Widget('Album Interface 1-1', self)
 
         # initialize layout
         self.initLayout()
@@ -66,26 +63,10 @@ class MainWindow(FramelessWindow):
         # self.navigationInterface.setAcrylicEnabled(True)
 
         self.addSubInterface(self.searchInterface, FIF.SEARCH, 'Search')
-        self.addSubInterface(self.musicInterface, FIF.MUSIC, 'Music library')
-        self.addSubInterface(self.videoInterface, FIF.VIDEO, 'Video library')
+        self.addSubInterface(self.employeesInterface, FIF.FEEDBACK, 'Employees Manage')
+        self.addSubInterface(self.departmentInterface, FIF.PEOPLE, 'Department Manage')
 
         self.navigationInterface.addSeparator()
-
-        self.addSubInterface(self.albumInterface, FIF.ALBUM, 'Albums', NavigationItemPosition.SCROLL)
-        self.addSubInterface(self.albumInterface1, FIF.ALBUM, 'Album 1', parent=self.albumInterface)
-        self.addSubInterface(self.albumInterface1_1, FIF.ALBUM, 'Album 1.1', parent=self.albumInterface1)
-        self.addSubInterface(self.albumInterface2, FIF.ALBUM, 'Album 2', parent=self.albumInterface)
-
-        # add navigation items to scroll area
-        self.addSubInterface(self.folderInterface, FIF.FOLDER, 'Folder library', NavigationItemPosition.SCROLL)
-        # for i in range(1, 21):
-        #     self.navigationInterface.addItem(
-        #         f'folder{i}',
-        #         FIF.FOLDER,
-        #         f'Folder {i}',
-        #         lambda: print('Folder clicked'),
-        #         position=NavigationItemPosition.SCROLL
-        #     )
 
         # add custom widget to bottom
         self.navigationInterface.addWidget(
@@ -110,9 +91,9 @@ class MainWindow(FramelessWindow):
         # self.navigationInterface.setCollapsible(False)
 
     def initWindow(self):
-        self.resize(900, 700)
+        self.resize(1200, 800)
         self.setWindowIcon(QIcon('resource/logo.png'))
-        self.setWindowTitle('PyQt-Fluent-Widgets')
+        self.setWindowTitle('HR Master')
         self.titleBar.setAttribute(Qt.WA_StyledBackground)
 
         desktop = QApplication.desktop().availableGeometry()
