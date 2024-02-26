@@ -17,7 +17,7 @@ class Ui_LoginWindow(object):
     def setupUi(self, LoginWindow):
         LoginWindow.setObjectName("LoginWindow")
         LoginWindow.resize(576, 375)
-        image_path = "ui/PersonPicture.png"
+        image_path = "resource/PersonPicture.png"
         pixmap = QPixmap(image_path)
         self.AvatarWidget = AvatarWidget(LoginWindow)
         self.AvatarWidget.setPixmap(pixmap)
